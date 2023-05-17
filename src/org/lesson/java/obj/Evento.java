@@ -88,14 +88,12 @@ public class Evento {
 	
 	//metodo per stampare tutti gli attributi
 	protected String getEventoToString() {
-		return "Titolo: " + getTitolo() 
-			+ "\nData: " + getData()
-			+ "\nNumero posti totali: " + getNumpostiTotale()
-			+ "\nNumero posti prenotati: " + getNumPostiPrenotati();
+		return "Data: " + getData() 
+			+ " - Titolo: " + getTitolo();
 	}
 	
 	@Override
 	public String toString() {
-		return "(E)\n" + getEventoToString() + "\n-----------------";
+		return "(E) " + getEventoToString() + "\n-----------------";
 	}
 }

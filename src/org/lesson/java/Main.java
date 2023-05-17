@@ -1,14 +1,19 @@
 package org.lesson.java;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
+import org.lesson.java.obj.Concerto;
 import org.lesson.java.obj.Evento;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		Evento evento = null;
+		Concerto concerto = null;
+		
 		int contatore = 0;
 		
 		System.out.print("Inserisci il titolo dell'evento: ");
@@ -35,14 +40,8 @@ public class Main {
             
             int userVal = sc.nextInt();
             
-            if(userVal < 1 || userVal > 2) {
-        		System.err.println("Errore!");
-        		continue;
-        	}
-            
-            if (userVal == 2) {
-                break;
-            }
+            if(userVal < 1 || userVal > 2) continue;
+            if (userVal == 2) break;
             
             sc.nextLine();
             
@@ -68,7 +67,7 @@ public class Main {
 					
 				}
 			} catch (Exception e) {
-				System.err.println("Errore! , " + e.getMessage());
+				System.err.println("Errore!\n" + e.getMessage());
 			}
 			
 			System.out.println("1 - Vuoi procedere con la cancellazione dei posti");
@@ -76,14 +75,8 @@ public class Main {
             
             int userVal1 = sc.nextInt();
             
-            if(userVal1 < 1 || userVal1 > 2) {
-        		System.err.println("Errore!");
-        		continue;
-        	}
-            
-            if (userVal1 == 2) {
-                break;
-            }
+            if (userVal1 < 1 || userVal1 > 2) continue;
+            if (userVal1 == 2) break;
             
             sc.nextLine();
             
@@ -96,17 +89,40 @@ public class Main {
 				System.out.println("Posti prenotati: " 
 									+ evento.getNumPostiPrenotati() + " su " 
 									+ evento.getNumpostiTotale() + " disponibili");
-					
-				
 			} catch (Exception e) {
-				System.err.println("Errore! , " + e.getMessage());
+				System.err.println("Errore!\n" + e.getMessage());
 			}
-			
-			
-			
 		}
 		
 		System.out.println(evento);
+		
+		while(true) {
+			
+			System.out.println("1 - Vuoi procedere con una nuovo evento");
+			System.out.println("2 - Esci e stampa evento");
+			int userVal2 = sc.nextInt();
+			
+			if (userVal2 < 1 || userVal2 > 2 ) continue;
+			if (userVal2 == 2) break;
+			
+			sc.nextLine();
+			
+			System.out.println("Inserisci il titolo del concentro");
+			String titolo_concentro = sc.nextLine(); 
+			
+		    System.out.println("Inserisci l'ora del concentro");
+		    LocalTime ora = LocalTime.parse(sc.nextLine());
+		    
+		    System.out.println("Inserisci il prezzo del biglietto");
+		    BigDecimal prezzo = sc.nextBigDecimal();
+		    
+			try {			
+				concerto = new Concerto(titolo_concentro, data, num_posti_totale, ora, prezzo);				
+			} catch (Exception e) {
+				System.err.println("Errore!\n" + e.getMessage());
+			}
+		}
+		System.out.println(concerto);
 		
 	}
 }
