@@ -29,6 +29,6 @@ public class ProgrammaEventi {
 	
 	@Override
 	public String toString() {
-		return "(PE) " + getTitolo() + getEventi() +"\n-----------------";
+		return "(PE) " + getTitolo() + getEventi();
 	}
 }	
