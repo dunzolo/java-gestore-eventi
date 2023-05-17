@@ -23,6 +23,10 @@ public class Main {
 		try {
 			Evento evento = new Evento(titolo, data, num_posti_totale);
 			System.out.println(evento);
+			evento.prenota(data, 5);
+			System.out.println(evento);
+			evento.disdici(data, 4);
+			System.out.println(evento);
 			
 		} catch(Exception e) {
 			System.err.println("Errore!\n" + e.getMessage());

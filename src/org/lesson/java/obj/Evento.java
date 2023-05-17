@@ -29,10 +29,8 @@ public class Evento {
 	}
 	public void setData(LocalDate data) throws Exception {
 		
-		//creo eccezione per verificare che la data non sia già passata
-		if(data.isBefore(LocalDate.now())) {
-			throw new Exception("Non si può inserire una data già passata!");
-		}
+		isBefore(data);
+		
 		this.data = data;
 	}
 	public int getNumpostiTotale() {
@@ -50,6 +48,43 @@ public class Evento {
 	public int getNumPostiPrenotati() {
 		return num_posti_prenotati;
 	}
+	
+	
+	public int prenota(LocalDate data, int num_posti) throws Exception {
+		
+		isBefore(data);
+		isFull(num_posti);
+		
+		return num_posti_prenotati += num_posti ;
+	}
+	
+	public int disdici(LocalDate data, int num_posti) throws Exception {
+		
+		isBefore(data);
+		isEmpty(num_posti);
+		
+		return num_posti_prenotati -= num_posti;
+	}
+	
+	//creo eccezione per verificare che la data non sia già passata
+	private void isBefore(LocalDate data) throws Exception {
+		if(data.isBefore(LocalDate.now())) {
+			throw new Exception("Non si può inserire una data già passata!");
+		}
+	}
+	//creo eccezione per verificare i posti disponibili
+	private void isFull(int num_posti) throws Exception {
+		if(num_posti + getNumPostiPrenotati() > getNumpostiTotale()) {
+			throw new Exception("Non ci sono abbastanza posti disponibili!");
+		}
+	}
+	//creo eccezione per verificare prenotazioni
+	private void isEmpty(int num_posti) throws Exception {
+		if(getNumPostiPrenotati() - num_posti < 0) {
+			throw new Exception("Non ci sono più prenotazioni da disdire!");
+		}
+	}
+
 	
 	//metodo per stampare tutti gli attributi
 	protected String getEventoToString() {
