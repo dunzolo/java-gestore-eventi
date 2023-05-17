@@ -17,9 +17,11 @@ public class Main {
 		Concerto concerto = null;
 		
 		List<Evento> eventi = new ArrayList<>();
-		ProgrammaEventi programma = new ProgrammaEventi(null, eventi);
 		
 		int contatore = 0;
+		
+		System.out.print("Inserisci il titolo del programma: ");
+		String titolo_programma = sc.nextLine();
 		
 		System.out.print("Quante prenotazioni vuoi effettuare? ");
 		int prenotazioni = sc.nextInt();
@@ -50,6 +52,12 @@ public class Main {
 			
 		}
 		
+		ProgrammaEventi programma = new ProgrammaEventi(titolo_programma, eventi);
+		
+		//un metodo che svuota la lista di eventi
+		//eventi.removeAll(eventi);
+		
+		//metodo che restituisce quanti eventi sono presenti nel programma
 		System.out.println(programma);
 	}
 }
